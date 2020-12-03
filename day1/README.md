@@ -1,9 +1,5 @@
 # day1
 
-## Installation
-
-https://crystal-lang.org/install/
-
 ## Build from source (optional)
 
 ```
