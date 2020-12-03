@@ -21,12 +21,7 @@ option_parser = OptionParser.parse do |parser|
       exit
     end
     # read lines into memory
-    lines = [] of String
-    File.each_line(file) do |line|
-      lines << line
-    end
-
-    data_map = DataMap.new lines
+    data_map = DataMap.new File.read_lines(file)
 
     # for part a and b both, do this traverse
     trees_encountered = data_map.traverse(3, 1).to_i64
