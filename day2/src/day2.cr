@@ -1,0 +1,27 @@
+
+require "option_parser"
+require "./password"
+
+option_parser = OptionParser.parse do |parser|
+  parser.banner = "Welcome to day 2 part a"
+
+  parser.on "-h", "--help", "Show help" do
+    puts parser
+    exit
+  end
+  parser.on "-i <file>", "--input <file>", "Input file" do |file|
+    complements = Set(Int32).new
+    unless File.file? file
+      puts "Invalid file"
+      exit
+    end
+    valid_passwords = 0
+    File.each_line(file) do |line|
+      if Password.is_valid?(line)
+        valid_passwords += 1
+      end
+    end
+    puts valid_passwords
+    exit
+  end
+end
