@@ -19,7 +19,7 @@ time ./day3 -b -i input.txt
 
 ```
 time ./day3 -i input.txt
-    0.00s user 0.00s system 85% cpu 0.009 total
+    0.00s user 0.00s system 86% cpu 0.010 total
 time ./day3 -b -i input.txt
-    0.00s user 0.00s system 88% cpu 0.010 total
+    0.00s user 0.00s system 84% cpu 0.009 total
 ```

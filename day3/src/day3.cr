@@ -1,6 +1,6 @@
 
 require "option_parser"
-# require "./password"
+require "./datamap"
 
 part_b = false
 
@@ -20,24 +20,26 @@ option_parser = OptionParser.parse do |parser|
       puts "Invalid file"
       exit
     end
-    line_number = 0
-    trees_encountered = 0
+    # read lines into memory
+    lines = [] of String
     File.each_line(file) do |line|
-        if part_b
-            
-        else
-            # skip first line
-            if line_number != 0
-              line_length = line.size
-              index_to_check = (line_number * 3) % line_length
-              # puts "line " + line_number.to_s + " checking index " + index_to_check.to_s + " is " + line[index_to_check]
-              if line[index_to_check] == '#'
-                  trees_encountered += 1
-              end
-            end
-        end    
-        line_number += 1  
+      lines << line
     end
+
+    data_map = DataMap.new lines
+
+    # for part a and b both, do this traverse
+    trees_encountered = data_map.traverse(3, 1).to_i64
+
+    if part_b
+      # for part b, traverse additional paths,
+      # and multiply the totals together
+      trees_encountered *= data_map.traverse(1, 1).to_i64
+      trees_encountered *= data_map.traverse(5, 1).to_i64
+      trees_encountered *= data_map.traverse(7, 1).to_i64
+      trees_encountered *= data_map.traverse(1, 2).to_i64
+    end
+
     puts trees_encountered
     exit
   end
