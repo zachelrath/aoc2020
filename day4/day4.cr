@@ -15,7 +15,6 @@ option_parser = OptionParser.parse do |parser|
     part_b = true
   end
   parser.on "-i <file>", "--input <file>", "Input file" do |file|
-    complements = Set(Int32).new
     unless File.file? file
       puts "Invalid file"
       exit
@@ -38,8 +37,17 @@ option_parser = OptionParser.parse do |parser|
         passports << Passport.new cur_lines
     end
 
-    puts passports.count do |p| { p.has_all_required_fields? && (!part_b || p.has_valid_field_values?) }
+    num_valid = passports.count do |p|
+        if part_b
+            p.has_valid_field_values?
+        else 
+            p.has_all_required_fields?
+        end
+    end
+
+    puts num_valid
 
     exit
+
   end
 end
