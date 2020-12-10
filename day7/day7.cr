@@ -3,7 +3,7 @@ require "option_parser"
 require "./bag_database"
 
 option_parser = OptionParser.parse do |parser|
-  parser.banner = "Welcome to day 6"
+  parser.banner = "Welcome to day 7"
 
   parser.on "-h", "--help", "Show help" do
     puts parser
